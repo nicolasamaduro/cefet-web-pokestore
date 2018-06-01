@@ -1,16 +1,15 @@
 window.addEventListener('keydown',e => handleKey(e.keyCode));
-    function handleKey(keyCode){
+const camera = document.querySelector("#camera")
+const cameraWrapper = document.querySelector("#camera-wrapper")
+function handleKey(keyCode){
+	const camerarot = camera.getAttribute('rotation')
+	console.log(camerarot)
     switch (keyCode) {
         case 75:  //k 
+			cameraWrapper.setAttribute('rotation', {x:camerarot.x, y:-camerarot.y, z:camerarot.z })
+			break;
         case 76:  //l
-            if (document.querySelector("#camera-animation").getAttribute("to")==="0 180 0"){                
-                document.querySelector("#camera-animation").setAttribute('to', '0 0 0');
-                document.querySelector("#camera-animation").setAttribute('from', '0 180 0');
-            }else{
-                document.querySelector("#camera-animation").setAttribute('to', '0 180 0');
-                document.querySelector("#camera-animation").setAttribute('from', '0 0 0');
-            }            
-            document.querySelector("#camera-animation").emit('fade');
+			cameraWrapper.setAttribute('rotation', {x:camerarot.x, y:-camerarot.y+180, z:camerarot.z })
         break;
     }
 }
